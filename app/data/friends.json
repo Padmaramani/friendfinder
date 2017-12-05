@@ -1,0 +1,34 @@
+[ {
+    "name":"Anna Kenderick",
+    "photo":"http://www.imdb.com/name/nm0447695/mediaviewer/rm2869756672",
+    "scores":[
+        5,
+        1,
+        4,
+        4,
+        5,
+        1,
+        2,
+        5,
+        4,
+        1
+      ]
+  },
+  {
+    "name":"cate Blanchett",
+    "photo":"http://www.imdb.com/gallery/rg1859820288/mediaviewer/rm2515884032",
+    "scores":[
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ]
+  }
+
+]
