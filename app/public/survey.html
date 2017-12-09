@@ -37,7 +37,7 @@
             <label><h3><b>Question 1</b></h3></label>
             <br>
             <label for="question1"><h4>Your mind is always buzzing with unexplored ideas and plans.</h4></label>
-            <select class="form-control">
+            <select class="form-control" id="answer1">
                 <option selected>Choose an option</option>
                 <option>1</option>
                 <option>2</option>
@@ -55,7 +55,7 @@
                 <label><h3><b>Question 2</b></h3></label>
                 <br>
                 <label for="question2"><h4>Generally speaking, you rely more on your experience than your imagination.</h4></label>
-                <select class="form-control">
+                <select class="form-control" id="answer2">
                     <option selected>Choose an option</option>
                     <option>1</option>
                     <option>2</option>
@@ -73,7 +73,7 @@
                     <label><h3><b>Question 3</b></h3></label>
                     <br>
                     <label for="question3"><h4>You find it easy to stay relaxed and focused even when there is some pressure.</h4></label>
-                    <select class="form-control" placeholder="select an option">
+                    <select class="form-control" id="answer3">
                         <option selected>Choose an option</option>
                         <option>1</option>
                         <option>2</option>
@@ -91,7 +91,7 @@
                         <label><h3><b>Question 4</b></h3></label>
                         <br>
                         <label for="question4"><h4>You rarely do something just out of sheer curiosity.</h4></label>
-                        <select class="form-control" placeholder="select an option">
+                        <select class="form-control" id="answer4">
                             <option selected>Choose an option</option>
                             <option>1</option>
                             <option>2</option>
@@ -109,7 +109,7 @@
                             <label><h3><b>Question 5</b></h3></label>
                             <br>
                             <label for="question5"><h4>People can rarely upset you.</h4></label>
-                            <select class="form-control" placeholder="select an option">
+                            <select class="form-control" id="answer5">
                                 <option selected>Choose an option</option>
                                 <option>1</option>
                                 <option>2</option>
@@ -127,7 +127,7 @@
                                 <label><h3><b>Question 6</b></h3></label>
                                 <br>
                                 <label for="question6"><h4>It is often difficult for you to relate to other people’s feelings.</h4></label>
-                                <select class="form-control" placeholder="select an option">
+                                <select class="form-control"  id="answer6">
                                     <option selected>Choose an option</option>
                                     <option>1</option>
                                     <option>2</option>
@@ -145,7 +145,7 @@
                                     <label><h3><b>Question 7</b></h3></label>
                                     <br>
                                     <label for="question7"><h4>In a discussion, truth should be more important than people’s sensitivities.</h4></label>
-                                    <select class="form-control" placeholder="select an option">
+                                    <select class="form-control"  id="answer7">
                                         <option selected>Choose an option</option>
                                         <option>1</option>
                                         <option>2</option>
@@ -163,7 +163,7 @@
                                         <label><h3><b>Question 8</b></h3></label>
                                         <br>
                                         <label for="question8"><h4>You rarely get carried away by fantasies and ideas.</h4></label>
-                                        <select class="form-control" placeholder="select an option">
+                                        <select class="form-control"  id="answer8">
                                             <option selected>Choose an option</option>
                                             <option>1</option>
                                             <option>2</option>
@@ -181,7 +181,7 @@
                                             <label><h3><b>Question 9</b></h3></label>
                                             <br>
                                             <label for="question9"><h4>You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</h4></label>
-                                            <select class="form-control" placeholder="select an option">
+                                            <select class="form-control"  id="answer9">
                                                 <option selected>Choose an option</option>
                                                 <option>1</option>
                                                 <option>2</option>
@@ -200,7 +200,7 @@
                                                 <label><h3><b>Question 10</b></h3></label>
                                                 <br>
                                                 <label for="question10"><h4>You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</h4></label>
-                                                <select class="form-control" placeholder="select an option">
+                                                <select class="form-control"  id="answer10">
                                                     <option selected>Choose an option</option>
                                                     <option>1</option>
                                                     <option>2</option>
@@ -221,3 +221,139 @@
                                          
     </div>
   </div>
+
+  <div class="modal fade" id="myModal">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+    
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Friendship Matching</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+    
+            <!-- Modal body -->
+            <div class="modal-body">
+              <span id="modalbody"></span>
+            </div>
+    
+            <!-- Modal body -->
+            <div class="modal-body" id="imgbody">
+            </div>
+                      
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+    
+          </div>
+        </div>  
+      </div>
+
+  <script type="text/javascript">
+    
+        // In this code below we create the Front-end JavaScript which "POSTS" our form data to our express server.
+        // In essence, when the user hits submit, jQuery grabs all of the fields then sends a post request to our api
+        // Our api recognizes the route (/api/tables)... and then runs the associated code (found in api-routes.js).
+        // In this case the associated code "saves" the data to the table-data.js file or waitinglist-data.js file
+    
+        $("#survey-submit").on("click", function(event) {
+          event.preventDefault();
+    
+          // Here we grab the 
+          var newFriend = {
+            name: $("#your-name").val().trim(),
+            photoLink : $("#your-name").val().trim(),
+            answer1: $("#answer1").val().trim(),
+            answer2: $("#answer2").val().trim(),
+            answer3: $("#answer3").val().trim(),
+            answer4: $("#answer4").val().trim(),
+            answer5: $("#answer5").val().trim(),
+            answer6: $("#answer6").val().trim(),
+            answer7: $("#answer7").val().trim(),
+            answer8: $("#answer8").val().trim(),
+            answer9: $("#answer9").val().trim(),
+            answer10: $("#answer10").val().trim()
+            
+        };
+    
+          console.log(newFriend);
+    
+          // This line is the magic. It"s very similar to the standard ajax function we used.
+          // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
+          // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
+          // depending on if a tables is available or not.
+
+          input_answer_total = parseInt(newFriend.answer1)+
+          parseInt(newFriend.answer2)+
+          parseInt(newFriend.answer3)+
+          parseInt(newFriend.answer4)+
+          parseInt(newFriend.answer5)+
+          parseInt(newFriend.answer6)+
+          parseInt(newFriend.answer7)+
+          parseInt(newFriend.answer8)+
+          parseInt(newFriend.answer9)+
+          parseInt(newFriend.answer10)
+
+          
+
+
+      // Here we get the location of the root page.
+      // We use this instead of explicitly saying the URL is localhost:3001 because the url will change when we deploy.
+      var currentURL = window.location.origin;
+
+      // The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
+      $.ajax({ url: currentURL + "/api/survey", method: "GET" })
+      .done(function(friendData) {
+
+        // Here we are logging the URL so we have access to it for troubleshooting
+        console.log("------------------------------------");
+        console.log("URL: " + currentURL + "/api/survey");
+        console.log("------------------------------------");
+
+        // Here we then log the NYTData to console, where it will show up as an object.
+        
+        console.log("------------------------------------");
+        var minimum_difference=101;
+        for (var i = 0; i < friendData.length; i++) {
+            total_points=0;
+            
+            for (var j = 0; j < friendData[i].scores.length; j++) {
+               total_points = total_points+friendData[i].scores[j]
+              }
+           
+            if (total_points > input_answer_total) {
+                total_difference = total_points - input_answer_total;
+               
+            }  
+            else { total_difference = input_answer_total - total_points;
+               }
+            if (total_difference < minimum_difference) {
+                minimum_difference=total_difference;
+                best_match = friendData[i].name;
+                best_match_picture = friendData[i].photo;
+            } 
+            // Create the HTML Well (Section) and Add the table content for each reserved table
+     
+        var best_match_text = "your best friend is "+ best_match  
+        var best_match_picture = best_match_picture
+   
+    }
+
+ 
+
+      $("#modalbody").html(best_match_text);  
+      
+      $("#imgbody").html("<img src='/app/data/pink.jpg' width='200px'/>");
+
+      $('#myModal').modal({
+        show: 'show'});
+
+  
+      });
+
+     
+      });
+
+
+    </script>
